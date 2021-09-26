@@ -1,2 +1,39 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<h1>Books</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @books.each do |allbooks| %>
+  <tr>
+    <td><%= allbooks.title %></td>
+    <td><%= allbooks.body %></td>
+    <td><%= link_to 'Show', book_path(allbooks) %></td>
+    <td><%= link_to 'Edit', edit_book_path(allbooks) %></td>
+    <td><%= link_to 'Destroy', book_path(allbooks), method: :delete, data: {confirm: '削除しますか'} %></td>
+  </tr>
+  <% end %>
+</table>
+
+<h1>New book</h1>
+<%= form_with model: @newbook, local:true do |book| %>
+  <div class="field">
+    <%= book.label :title, 'テキスト' %>
+    <%= book.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= book.label :body %>
+    <%= book.text_area :body %>
+  </div>
+
+  <div class="form-group">
+    <%= book.submit %>
+  </div>
+
+<% end %>
