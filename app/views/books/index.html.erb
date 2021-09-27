@@ -21,6 +21,8 @@
 </table>
 
 <h1>New book</h1>
+<%= render 'layouts/error', book: @newbook %>
+
 <%= form_with model: @newbook, local:true do |book| %>
   <div class="field">
     <%= book.label :title, 'テキスト' %>
